@@ -39,7 +39,7 @@ template EdDSAVerifier(n) {
 
     var i;
 
-// Ensure S<Subgroup Order
+    // Ensure S<Subgroup Order
 
     component  compConstant = CompConstant(2736030358979909402780800718157159386076813972158567259200215660948447373040);
 
@@ -50,7 +50,7 @@ template EdDSAVerifier(n) {
     S[254] === 0;
     S[255] === 0;
 
-// Convert A to Field elements (And verify A)
+    // Convert A to Field elements (And verify A)
 
     component bits2pointA = Bits2Point_Strict();
 
@@ -60,7 +60,7 @@ template EdDSAVerifier(n) {
     Ax <== bits2pointA.out[0];
     Ay <== bits2pointA.out[1];
 
-// Convert R8 to Field elements (And verify R8)
+    // Convert R8 to Field elements (And verify R8)
 
     component bits2pointR8 = Bits2Point_Strict();
 

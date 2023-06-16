@@ -1,0 +1,13 @@
+1,1,1,main.x
+2,2,1,main.k
+3,-1,1,main.expected
+4,3,0,main.hashing.out
+5,-1,0,main.hashing.x_in
+6,-1,0,main.hashing.k
+7,4,0,main.hashing.t2[0]
+8,5,0,main.hashing.t2[1]
+9,6,0,main.hashing.t4[0]
+10,7,0,main.hashing.t4[1]
+11,8,0,main.hashing.t6[0]
+12,9,0,main.hashing.t6[1]
+13,10,0,main.hashing.t7[0]
