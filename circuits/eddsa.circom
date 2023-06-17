@@ -70,7 +70,7 @@ template EdDSAVerifier(n) {
     R8x <== bits2pointR8.out[0];
     R8y <== bits2pointR8.out[1];
 
-// Calculate the h = H(R,A, msg)
+    // Calculate the h = H(R,A, msg)
 
     component hash = Pedersen(512+n);
 

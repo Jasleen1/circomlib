@@ -38,7 +38,7 @@ template EdDSAMiMCVerifier() {
 
     var i;
 
-// Ensure S<Subgroup Order
+    // Ensure S<Subgroup Order
 
     component snum2bits = Num2Bits(253);
     snum2bits.in <== S;
@@ -51,7 +51,7 @@ template EdDSAMiMCVerifier() {
     compConstant.in[253] <== 0;
     compConstant.out === 0;
 
-// Calculate the h = H(R,A, msg)
+    // Calculate the h = H(R,A, msg)
 
     component hash = MultiMiMC7(5, 91);
     hash.in[0] <== R8x;
@@ -63,8 +63,15 @@ template EdDSAMiMCVerifier() {
 
     component h2bits = Num2Bits_strict();
     h2bits.in <== hash.out;
-
-// Calculate second part of the right side:  right2 = h*8*A
+    log(00000);
+    log(R8x);
+    log(R8y);
+    log(Ax);
+    log(Ay);
+    log(M);
+    log(hash.out);
+    log(00000);
+    // Calculate second part of the right side:  right2 = h*8*A
 
     // Multiply by 8 by adding it 3 times.  This also ensure that the result is in
     // the subgroup.
@@ -90,27 +97,40 @@ template EdDSAMiMCVerifier() {
     mulAny.p[0] <== dbl3.xout;
     mulAny.p[1] <== dbl3.yout;
 
-
-// Compute the right side: right =  R8 + right2
+    
+    log(mulAny.out[0]);
+    // Compute the right side: right =  R8 + right2
 
     component addRight = BabyAdd();
     addRight.x1 <== R8x;
     addRight.y1 <== R8y;
     addRight.x2 <== mulAny.out[0];
     addRight.y2 <== mulAny.out[1];
+    log(addRight.xout);
+    // Calculate left side of equation left = S*B8
 
-// Calculate left side of equation left = S*B8
+    // var BASE8[2] = [
+    //     5299619240641551281634865583518297030282874472190772894086521144482721001553,
+    //     16950150798460657717958625567821834550301663161624707787222815936182638968203
+    // ];
+
+    // var BASE8[2] = [
+    //     17777552123799933955779906779655732241715742912184938656739573121738514868268,
+    //     2626589144620713026669568689430873010625803728049924121243784502389097019475
+    // ];
 
     var BASE8[2] = [
-        5299619240641551281634865583518297030282874472190772894086521144482721001553,
-        16950150798460657717958625567821834550301663161624707787222815936182638968203
+        16540640123574156134436876038791482806971768689494387082833631921987005038935, 
+        20819045374670962167435360035096875258406992893633759881276124905556507972311
     ];
+    
     component mulFix = EscalarMulFix(253, BASE8);
     for (i=0; i<253; i++) {
         mulFix.e[i] <== snum2bits.out[i];
     }
 
-// Do the comparation left == right if enabled;
+    log(mulFix.out[0]);
+    // Do the comparation left == right if enabled;
 
     component eqCheckX = ForceEqualIfEnabled();
     eqCheckX.enabled <== enabled;

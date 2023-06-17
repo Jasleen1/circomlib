@@ -7,7 +7,7 @@ template MiMCTest() {
     signal input k;
     signal input expected;
 
-    component hashing = MiMC7(2);
+    component hashing = MiMC7(91);
     hashing.x_in <== x;
     hashing.k <== k;
     log(hashing.out);

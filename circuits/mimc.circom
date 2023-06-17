@@ -146,10 +146,15 @@ template MultiMiMC7(nInputs, nRounds) {
 
     r[0] <== k;
     for (var i=0; i<nInputs; i++) {
+        
         mims[i] = MiMC7(nRounds);
         mims[i].x_in <== in[i];
         mims[i].k <== r[i];
         r[i+1] <== r[i] + in[i] + mims[i].out;
+        log(42);
+        log(i);
+        log(r[i+1]);
+        log(42);
     }
 
     out <== r[nInputs];

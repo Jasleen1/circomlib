@@ -7,7 +7,7 @@ template MiMCCom() {
     signal input r;
     signal output com;
 
-    component hashing = MultiMiMC7(2, 10);
+    component hashing = MultiMiMC7(2, 91);
     hashing.in <== [x, r];
     hashing.k <== 0;
 
