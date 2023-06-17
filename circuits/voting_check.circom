@@ -25,22 +25,29 @@ template VotingCheck() {
     commitment.r <== voter_r;
 
     com <-- commitment.com;
-    // com === M;
-    component test_multi = MultiMiMC7(2, 2);
-    test_multi.in <== [1, 1];
-    test_multi.k <== 0;
-    log(100001);
-    log(test_multi.out);
+    
+    // com === M; 
+    // component test_multi = MultiMiMC7(2, 91);
+    // test_multi.in <== [11111, 0];
+    // test_multi.k <== 0;
+    // log(100001);
+    // log(test_multi.out);
 
-    // component sig_verify = EdDSAMiMCVerifier();
-    // log(com);
-    // sig_verify.enabled <== enabled;
-    // sig_verify.M <== M;
-    // sig_verify.Ax <== Ax;
-    // sig_verify.Ay <== Ay;
-    // sig_verify.R8x <== R8x;
-    // sig_verify.R8y <== R8y;
-    // sig_verify.S <== S;
+    // component mimc = MiMC7(2);
+    // mimc.x_in <== 3;
+    // mimc.k <== 2;
+    // log(100001);
+    // log(mimc.out);
+
+    component sig_verify = EdDSAMiMCVerifier();
+    log(com);
+    sig_verify.enabled <== enabled;
+    sig_verify.M <== M;
+    sig_verify.Ax <== Ax;
+    sig_verify.Ay <== Ay;
+    sig_verify.R8x <== R8x;
+    sig_verify.R8y <== R8y;
+    sig_verify.S <== S;
 
 }
 
