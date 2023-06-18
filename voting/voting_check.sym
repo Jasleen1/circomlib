@@ -1,7 +1,7 @@
-1,1,30,main.Ax
-2,2,30,main.Ay
-3,3,30,main.M
-4,4,30,main.voter_PK
+1,1,30,main.voter_PK
+2,2,30,main.Ax
+3,3,30,main.Ay
+4,4,30,main.M
 5,5,30,main.voter_r
 6,6,30,main.enabled
 7,7,30,main.S

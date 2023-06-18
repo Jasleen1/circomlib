@@ -38,4 +38,4 @@ template VotingCheck() {
 
 }
 
-component main {public [Ax, Ay, M]} = VotingCheck();
+component main {public [Ax, Ay, M, voter_PK]} = VotingCheck();
