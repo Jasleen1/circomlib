@@ -55,9 +55,6 @@ contract Groth16Verifier {
     uint256 constant IC3x = 18298656824798888560908807511263954593156003524503746993092452980007506639923;
     uint256 constant IC3y = 14236326150483779115036154787664542913709608142875353474111974617012129539304;
     
-    uint256 constant IC4x = 19789742845184005614541902655676943788236843871844838904367069286207277287410;
-    uint256 constant IC4y = 12960398842169410992891157283832001064693391995265553318550018548090717376601;
-    
  
     // Memory data
     uint16 constant pVk = 0;
@@ -65,7 +62,7 @@ contract Groth16Verifier {
 
     uint16 constant pLastMem = 896;
 
-    function verifyProof(uint[2] calldata _pA, uint[2][2] calldata _pB, uint[2] calldata _pC, uint[4] calldata _pubSignals) public view returns (bool) {
+    function verifyProof(uint[2] calldata _pA, uint[2][2] calldata _pB, uint[2] calldata _pC, uint[3] calldata _pubSignals) public view returns (bool) {
         assembly {
             function checkField(v) {
                 if iszero(lt(v, q)) {
@@ -114,8 +111,6 @@ contract Groth16Verifier {
                 g1_mulAccC(_pVk, IC2x, IC2y, calldataload(add(pubSignals, 32)))
                 
                 g1_mulAccC(_pVk, IC3x, IC3y, calldataload(add(pubSignals, 64)))
-                
-                g1_mulAccC(_pVk, IC4x, IC4y, calldataload(add(pubSignals, 96)))
                 
 
                 // -A
@@ -177,8 +172,6 @@ contract Groth16Verifier {
             checkField(calldataload(add(_pubSignals, 64)))
             
             checkField(calldataload(add(_pubSignals, 96)))
-            
-            checkField(calldataload(add(_pubSignals, 128)))
             
 
             // Validate all evaluations
